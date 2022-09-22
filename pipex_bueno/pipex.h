@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2022/09/22 14:46:20 by alvelazq         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:39:16 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@
 
 typedef struct s_pipex
 {
-    pid_t   pid1;
-    pid_t   pid2;
-    int		tube[2];
-    int		infile;
-	int		outfile;
+    pid_t   pid1; //refiriendome a process id 1
+    pid_t   pid2; // a process id 2
+    int		tube[2]; //esto es el tube con end[1] y end[0]
+    int		infile; // sera el stdin del cmd1
+	int		outfile; // sera el stdout del cmd2
 	char	*paths;
 	char	**cmd_paths;
 	char	**cmd_args;

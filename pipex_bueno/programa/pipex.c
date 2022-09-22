@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2022/09/22 15:12:41 by alvelazq         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:53:39 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
 		msg_error(ERR_INFILE);
-	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR);
 	if (pipex.outfile < 0)
 		msg_error(ERR_OUTFILE);
 	if (pipe(pipex.tube) < 0)
 		msg_error(ERR_PIPE);
 	pipex.paths = find_path(envp);
 	pipex.cmd_paths = ft_split(pipex.paths, ':');
-	pipex.pid1 = fork();
-	if (pipex.pid1 == 0)
+	pipex.pid1 = fork(); // splitea nuestro proceso en dos (cero para child nono-cero para paretnt)
+	if (pipex.pid1 == 0) //los id de los child process son siempre CERO
 		first_child(pipex, argv, envp);
 	pipex.pid2 = fork();
-	if (pipex.pid2 == 0)
+	if (pipex.pid2 == 0) // los id de los child process son siempre CERO
 		second_child(pipex, argv, envp);
 	close_pipes(&pipex);
-	waitpid(pipex.pid1, NULL, 0);
+	waitpid(pipex.pid1, NULL, 0); //esperas-supervisas
 	waitpid(pipex.pid2, NULL, 0);
 	parent_free(&pipex);
 	return (0);

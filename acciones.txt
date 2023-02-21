@@ -1,0 +1,30 @@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CHULETA @@@@@@@@@@@@@@@@@@@@@@@@@@
+
+WC:
+wc -l : cuenta las lineas
+wc -w : cuenta las palabras
+wc -m : cuenta los caracteres
+wc -c : cuenta los bytes
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CHULETA @@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ ################################################ COMANDO QUE PONER ###############################################
+
+
+ LISTAS DE COMANDOS DE PIPES:
+
+- < infile.txt tr a b | tr b c > outfile.txt // te pasa las A a B y las B a C
+- ./pipex infile.txt "tr a b" "tr b c" outfile.txt
+
+- < infile.txt grep a | wc -c > outfile.txt // te cuenta el numero de words con ese parametro
+- ./pipex infile.txt "grep a" "wc -c" outfile.txt
+
+- < state.txt grep -i e | wc -l > estado.txt // cuentame las lineas de los estados que tengan 'e'
+- ./pipex state.txt "grep -i e" "wc -l" estado.txt
+
+- < productos.txt sort | uniq > hola.txt // ordena los productos y te da los no repetidos
+- ./pipex productos.txt "sort" "uniq" hola.txt
+
+ ################################################ COMANDO QUE PONER #############################################

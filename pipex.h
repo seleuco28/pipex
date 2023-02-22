@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/22 11:05:33 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:30:44 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef struct s_pipex
     int		tube[2]; //esto es el tube con end[1] y end[0]
     int		infile; // sera el stdin del cmd1
 	int		outfile; // sera el stdout del cmd2
-	char	*paths; // churro largo
+	//char	*paths; // churro largo
 	char	**cmd_paths; // churro corto
-	char	**cmd_args; // los comandos que le meto
-	char	*cmd; // el comando que tiene el PC
+	char	**cmd_args; // los comandos que le meto ej: "wc -c"
+	char	*cmd; // el path bien puesto ej: "which ls"
 }t_pipex;
 
-/* childs.c */
+/* tube.c */
 void	first_child(t_pipex pipex, char *argv[], char *envp[]);
 void	second_parent(t_pipex pipex, char *argv[], char *envp[]);
 
@@ -59,7 +59,6 @@ void free_args(t_pipex *pipex);
 
 /* FUNCIONES */
 char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *str);

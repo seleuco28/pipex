@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   childs.c                                           :+:      :+:    :+:   */
+/*   tube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/22 11:03:31 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:09:46 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
+// ejempmlo de get_cmd() -- "which tr" te da usr/bin/tr 
+
 static char	*get_cmd(char **paths, char *cmd) // va pasando por los churros cortos y mira si el comando esta (si esta lo retorna y sino sigue)
-{
+{											// como argumentos el 1ro es el churro corto, el segundo es el comando en si el "tr"
 	char	*tmp;
 	char	*command;
 
@@ -37,8 +39,8 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[])
 	close(pipex.tube[0]); // cierro el extremo de lectura
 	dup2(pipex.tube[1], 1); //duplica el fd y le damos el numero de fd que queremos
 	dup2(pipex.infile, 0); // colocamos manualmente el infile en el fd 0 (el que es por defecto)
-	pipex.cmd_args = ft_split(argv[2], ' '); //spliteado cogeme el 2ndo argumento (1er comando)
-	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el comando que tenemos y existe en nuestro PC
+	pipex.cmd_args = ft_split(argv[2], ' '); //spliteado cogeme el 2ndo argumento (1er comando) "en el caso de que sea wc -c haciendo el split solo queda el wc"
+	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el churro pequeño Y el 1er comando
 	if (!pipex.cmd)
 	{
 		free_args(&pipex);
@@ -57,7 +59,7 @@ void	second_parent(t_pipex pipex, char *argv[], char *envp[])
 	dup2(pipex.tube[0], 0); //duplica el fd y le damos el numero de fd que queremos
 	dup2(pipex.outfile, 1); // colocamos manualmente el outfile en el fd 1 (el que es por defecto)
 	pipex.cmd_args = ft_split(argv[3], ' '); // spliteado cogeme el 3er argumento (el 2ndo comando)
-	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el comando que tenemos y existe en nuestro PC
+	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el churro pequeño Y el 2ndo comando
 	if (!pipex.cmd)
 	{
 		free_args(&pipex);

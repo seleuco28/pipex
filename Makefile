@@ -6,7 +6,7 @@
 #    By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:06:36 by alvelazq          #+#    #+#              #
-#    Updated: 2023/02/22 11:07:20 by alvelazq         ###   ########.fr        #
+#    Updated: 2023/02/22 12:36:08 by alvelazq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ RM			=	rm -rf # 'r' -> para que sea recursivo 'f' -> para no preguntar al usuari
 #SUBCARPETAS
 HEADER		=	pipex.h
 
-PROGRAMA_SOURCES	=	pipex.c childs.c free.c
+PROGRAMA_SOURCES	=	pipex.c tube.c free.c
 PROGRAMA_DIR	=	programa/
 PROGRAMA		=	$(addprefix $(PROGRAMA_DIR), $(PROGRAMA_SOURCES))
 PROGRAMA_OBJ		=	$(PROGRAMA:.c=.o)
 
-FUNCIONES_SOURCES	=	ft_strncmp.c ft_strdup.c ft_split.c ft_strjoin.c ft_strlen.c ft_strlcpy.c
+FUNCIONES_SOURCES	=	ft_strncmp.c ft_split.c ft_strjoin.c ft_strlen.c ft_strlcpy.c
 FUNCIONES_DIR	=	funciones/
 FUNCIONES 		=	$(addprefix $(FUNCIONES_DIR), $(FUNCIONES_SOURCES))
 FUNCIONES_OBJ		=	$(FUNCIONES:.c=.o)

@@ -1,5 +1,0 @@
-Producto1 50€
-Producto3 60€
-Producto1 50€
-Producto2 90€
-Producto3 60€

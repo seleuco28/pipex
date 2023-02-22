@@ -6,17 +6,15 @@
 #    By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:06:36 by alvelazq          #+#    #+#              #
-#    Updated: 2023/02/22 12:36:08 by alvelazq         ###   ########.fr        #
+#    Updated: 2023/02/22 19:40:25 by alvelazq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#GENERAL
 NAME		=	pipex
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror
-RM			=	rm -rf # 'r' -> para que sea recursivo 'f' -> para no preguntar al usuario e ignorar archivos inexistentes
+RM			=	rm -rf
 
-#SUBCARPETAS
 HEADER		=	pipex.h
 
 PROGRAMA_SOURCES	=	pipex.c tube.c free.c
@@ -29,7 +27,6 @@ FUNCIONES_DIR	=	funciones/
 FUNCIONES 		=	$(addprefix $(FUNCIONES_DIR), $(FUNCIONES_SOURCES))
 FUNCIONES_OBJ		=	$(FUNCIONES:.c=.o)
 
-#COMANDOS
 %.o: %.c $(HEADER) Makefile
 				@${CC} ${FLAGS} -c $< -o $@
 
@@ -52,12 +49,6 @@ re:				fclean all
 
 .PHONY:		all clean fclean re
 
-#COLORES
 RED = \033[1;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
-
-
-
-
-

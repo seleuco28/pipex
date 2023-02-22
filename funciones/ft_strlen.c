@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:47:37 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/12 20:31:36 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:33:59 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_strlen(const char *str)
 
 	i = 0;
 	if (!str)
-		return (0); //no se puede poner NULL te salta warning
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
@@ -33,4 +33,3 @@ int main(void)
 	printf("%zu\n" , strlen(str));
 	return (0);
 }*/
-

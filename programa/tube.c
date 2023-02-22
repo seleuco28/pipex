@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/22 14:09:46 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:55:31 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,13 @@ static char	*get_cmd(char **paths, char *cmd) // va pasando por los churros cort
 void	first_child(t_pipex pipex, char *argv[], char *envp[])
 {
 	close(pipex.tube[0]); // cierro el extremo de lectura
-	dup2(pipex.tube[1], 1); //duplica el fd y le damos el numero de fd que queremos
-	dup2(pipex.infile, 0); // colocamos manualmente el infile en el fd 0 (el que es por defecto)
+	//always close the end of the pipe you don't use, as long as the pipe is open, the other end will 
+    //be waiting for some kind of input and will not be able to finish its process
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//dup2 lo uso para redireccionar pero en realidad lo que hace es:
+	// int dup2(int fd1, int fd2) : it will close fd2 and duplicate the value of fd2 to fd1, or else said, it will redirect fd1 to fd2
+	dup2(pipex.infile, 0); //queremos que nuestro infile sea nuestra stdin	
+	dup2(pipex.tube[1], 1); // y que end[1](en el tutorial) sea nuestra stdout
 	pipex.cmd_args = ft_split(argv[2], ' '); //spliteado cogeme el 2ndo argumento (1er comando) "en el caso de que sea wc -c haciendo el split solo queda el wc"
 	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el churro pequeño Y el 1er comando
 	if (!pipex.cmd)
@@ -56,8 +61,8 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[])
 void	second_parent(t_pipex pipex, char *argv[], char *envp[])
 {
 	close(pipex.tube[1]); // cierro el extremo de escritura
-	dup2(pipex.tube[0], 0); //duplica el fd y le damos el numero de fd que queremos
-	dup2(pipex.outfile, 1); // colocamos manualmente el outfile en el fd 1 (el que es por defecto)
+	dup2(pipex.tube[0], 0); //queremos que end[0] de nuestro programa sea el stdin para que lea lo que ha hecho el child
+	dup2(pipex.outfile, 1); // y que nuestra salida (sdout) sea por el outfile
 	pipex.cmd_args = ft_split(argv[3], ' '); // spliteado cogeme el 3er argumento (el 2ndo comando)
 	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el churro pequeño Y el 2ndo comando
 	if (!pipex.cmd)

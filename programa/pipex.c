@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/22 14:12:42 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:34:51 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR , 0644); //trunc para sobreescr // 0644 para darle permisos y poder borrarlo
 	if (pipex.outfile < 0)
 		an_error();
-	pipe(pipex.tube); // aqui es la unica vez en todo el programa en que hago pipe. Pipe le asigna un FD a cada end[]
+	pipe(pipex.tube); // pipe() takes an array of two int such as int end[2], and links them together. 
+						//In a pipe, what is done in end[0] is visible to end[1], and vice versa. Plus, pipe() assigns an fd to each end.
 	//pipex.paths = find_path(envp); // el churro largo de env: PATH=
 	pipex.cmd_paths = ft_split(find_path(envp), ':'); //el churro de arriba spliteado, donde el programa tiene que ir buscando los comandos
 	pipex.pid = fork(); // splitea nuestro proceso en dos (cero para child non-cero para paretnt)
-	// CONTROLAR CUANDO EL PROCESS ID SEA -1¿¿?¿??¿
+						// crea un nuevo proceso, el child, identico al parent menos por que tiene diferene pid
+						//fork to run two processes in one single program
 	if (pipex.pid < 0)
 		an_error();
 	else if (pipex.pid == 0) //los id de los child process son siempre CERO

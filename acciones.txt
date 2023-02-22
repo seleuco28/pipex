@@ -10,10 +10,11 @@ wc -c : cuenta los bytes
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CHULETA @@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
- ################################################ COMANDO QUE PONER ###############################################
+LISTAS DE COMANDOS DE PIPES:
 
-
- LISTAS DE COMANDOS DE PIPES:
+### este es el 1er ejemplo del subject
+- < infile.txt ls -l | wc -l > outfile.txt 
+- ./pipex infile.txt "ls -l" "wc -l" outfile.txt
 
 - < infile.txt tr a b | tr b c > outfile.txt // te pasa las A a B y las B a C
 - ./pipex infile.txt "tr a b" "tr b c" outfile.txt

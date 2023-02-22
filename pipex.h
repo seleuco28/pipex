@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/14 12:25:06 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:05:33 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ void	second_parent(t_pipex pipex, char *argv[], char *envp[]);
 /* free.c */
 void free_paths(t_pipex *pipex);
 void free_args(t_pipex *pipex);
-
-/* error.c */
-void msg_error(char *err);
-int	msg(char *err);
 
 /* FUNCIONES */
 char	**ft_split(char const *s, char c);

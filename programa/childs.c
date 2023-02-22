@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/14 12:24:59 by alvelazq         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:03:31 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[])
 	if (!pipex.cmd)
 	{
 		free_args(&pipex);
-		msg(ERR_CMD);
+		perror("Error en el path al comando.");
 		exit(1);
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
@@ -61,7 +61,7 @@ void	second_parent(t_pipex pipex, char *argv[], char *envp[])
 	if (!pipex.cmd)
 	{
 		free_args(&pipex);
-		msg(ERR_CMD);
+		perror("Error en el path al comando.");
 		exit(1);
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);

@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/22 18:34:51 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:32:43 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,20 @@ void	an_error()
 	exit(1);
 }
 
+// EL CONTROL DE LEAKS DE OTRAS VECES, NO ME FUNCIONA (checkear otros repos)
+/*void	leaks(void)
+{
+	system("leaks -q pipex");
+}*/
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	pipex;
 
 	if (argc != 5)
 		an_error();
+
+	//atexit(leaks);
 
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)

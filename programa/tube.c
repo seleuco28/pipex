@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/22 18:55:31 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:08:46 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // ejempmlo de get_cmd() -- "which tr" te da usr/bin/tr 
 
-static char	*get_cmd(char **paths, char *cmd) // va pasando por los churros cortos y mira si el comando esta (si esta lo retorna y sino sigue)
+static char	*get_cmd(char **paths, char *cmd) // va pasando por los churros cortos y mira si el comando está (si esta lo retorna y sino sigue)
 {											// como argumentos el 1ro es el churro corto, el segundo es el comando en si el "tr"
 	char	*tmp;
 	char	*command;

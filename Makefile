@@ -6,7 +6,7 @@
 #    By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:06:36 by alvelazq          #+#    #+#              #
-#    Updated: 2023/02/22 12:36:08 by alvelazq         ###   ########.fr        #
+#    Updated: 2024/06/18 14:00:56 by alvelazq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,29 +19,29 @@ RM			=	rm -rf # 'r' -> para que sea recursivo 'f' -> para no preguntar al usuari
 #SUBCARPETAS
 HEADER		=	pipex.h
 
-PROGRAMA_SOURCES	=	pipex.c tube.c free.c
-PROGRAMA_DIR	=	programa/
-PROGRAMA		=	$(addprefix $(PROGRAMA_DIR), $(PROGRAMA_SOURCES))
-PROGRAMA_OBJ		=	$(PROGRAMA:.c=.o)
+SRC_SOURCES	=	pipex.c tube.c free.c
+SRC_DIR	=	src/
+SRC		=	$(addprefix $(SRC_DIR), $(SRC_SOURCES))
+SRC_OBJ		=	$(SRC:.c=.o)
 
-FUNCIONES_SOURCES	=	ft_strncmp.c ft_split.c ft_strjoin.c ft_strlen.c ft_strlcpy.c
-FUNCIONES_DIR	=	funciones/
-FUNCIONES 		=	$(addprefix $(FUNCIONES_DIR), $(FUNCIONES_SOURCES))
-FUNCIONES_OBJ		=	$(FUNCIONES:.c=.o)
+FUNCTIONS_SOURCES	=	ft_strncmp.c ft_split.c ft_strjoin.c ft_strlen.c ft_strlcpy.c
+FUNCTIONS_DIR	=	functions/
+FUNCTIONS		=	$(addprefix $(FUNCTIONS_DIR), $(FUNCTIONS_SOURCES))
+FUNCTIONS_OBJ		=	$(FUNCTIONS:.c=.o)
 
 #COMANDOS
 %.o: %.c $(HEADER) Makefile
 				@${CC} ${FLAGS} -c $< -o $@
 
-$(NAME):		$(FUNCIONES_OBJ) $(PROGRAMA_OBJ)
-				@$(CC) $(FUNCIONES_OBJ) $(PROGRAMA_OBJ) -o $(NAME)
+$(NAME):		$(FUNCTIONS_OBJ) $(SRC_OBJ)
+				@$(CC) $(FUNCTIONS_OBJ) $(SRC_OBJ) -o $(NAME)
 				@echo "$(GREEN)$(NAME) creado!"
 
 all:			$(NAME)
 
 clean:
-				@$(RM) $(PROGRAMA_OBJ)
-				@$(RM) $(FUNCIONES_OBJ)
+				@$(RM) $(SRC_OBJ)
+				@$(RM) $(FUNCTIONS_OBJ)
 				@echo "$(YELLOW)archivos *.o borrados"
 
 fclean:			clean

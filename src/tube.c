@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/18 13:03:40 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:42:49 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[])
 	// es la variable de entorno (que ponemos en la consola)
 }
 
-void	second_parent(t_pipex pipex, char *argv[], char *envp[])
+void	second_child(t_pipex pipex, char *argv[], char *envp[])
 {
 	close(pipex.tube[1]); // cierro el extremo de escritura
 	if (dup2(pipex.tube[0], 0) == -1) //queremos que end[0] de nuestro programa sea el stdin para que lea lo que ha hecho el child

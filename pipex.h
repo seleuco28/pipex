@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/18 12:35:27 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:56:31 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@
 # define ERR_FORK "Failed fork"
 # define ERR_DUP2 "Failed dup2() -- function"
 
-/* ESTRUCTURA PIPEX */
+/* Pipex structure */
 
 typedef struct s_pipex
 {
-    pid_t   pid; //refiriendome a process id 1 // ¿?¿??¿?QUE ESTRUCTURA DE DATOS ES PID_T¿?¿?¿?
-    int		tube[2]; //esto es el tube con end[1] y end[0]
+    pid_t   pid1; //refiriendome a process id 1 // ¿?¿??¿?QUE ESTRUCTURA DE DATOS ES PID_T¿?¿?¿?
+    pid_t	pid2;
+	int		tube[2]; //esto es el tube con end[1] y end[0]
     int		infile; // sera el stdin del cmd1
 	int		outfile; // sera el stdout del cmd2
 	//char	*paths; // churro largo
@@ -51,15 +52,15 @@ typedef struct s_pipex
 	char	*cmd; // el path bien puesto ej: "which ls"
 }t_pipex;
 
-/* tube.c */
+/* Tube.c */
 void	first_child(t_pipex pipex, char *argv[], char *envp[]);
-void	second_parent(t_pipex pipex, char *argv[], char *envp[]);
+void	second_child(t_pipex pipex, char *argv[], char *envp[]);
 
-/* free.c */
+/* Free */
 void free_paths(t_pipex *pipex);
 void free_args(t_pipex *pipex);
 
-/* FUNCIONES */
+/* Functions */
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

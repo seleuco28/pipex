@@ -9,6 +9,13 @@ wc -c : cuenta los bytes
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CHULETA @@@@@@@@@@@@@@@@@@@@@@@@@@
 
+Par ver los paths de los comandos which (ejemplo):
+
+** which ls
+** which tr
+** which wc
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CHULETA @@@@@@@@@@@@@@@@@@@@@@@@@@
 
 LISTAS DE COMANDOS DE PIPES:
 

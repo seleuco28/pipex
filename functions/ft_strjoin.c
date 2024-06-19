@@ -6,11 +6,11 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:47:33 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/12 20:23:53 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:52:06 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../include/pipex.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

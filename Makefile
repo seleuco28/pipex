@@ -1,61 +1,62 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/22 15:06:36 by alvelazq          #+#    #+#              #
-#    Updated: 2024/06/18 14:00:56 by alvelazq         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-#GENERAL
+#SETUP
 NAME		=	pipex
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror
-RM			=	rm -rf # 'r' -> para que sea recursivo 'f' -> para no preguntar al usuario e ignorar archivos inexistentes
+RM			=	rm -rf
 
-#SUBCARPETAS
-HEADER		=	pipex.h
+#FILES AND PATH
+HEADER_SRCS	=	pipex.h pipex_bonus.h
+HEADER_DIR	=	include/
+HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
-SRC_SOURCES	=	pipex.c tube.c free.c
-SRC_DIR	=	src/
-SRC		=	$(addprefix $(SRC_DIR), $(SRC_SOURCES))
-SRC_OBJ		=	$(SRC:.c=.o)
+MPATH_SRCS	=	pipex.c free.c tube.c
+MPATH_DIR	=	src/
+MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
+OBJ_M		=	$(MPATH:.c=.o)
 
-FUNCTIONS_SOURCES	=	ft_strncmp.c ft_split.c ft_strjoin.c ft_strlen.c ft_strlcpy.c
-FUNCTIONS_DIR	=	functions/
-FUNCTIONS		=	$(addprefix $(FUNCTIONS_DIR), $(FUNCTIONS_SOURCES))
-FUNCTIONS_OBJ		=	$(FUNCTIONS:.c=.o)
+BPATH_SRCS	=	pipex_bonus.c free_bonus.c tube_bonus.c
+BPATH_DIR	=	bonus/
+BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
+OBJ_B		=	$(BPATH:.c=.o)
 
-#COMANDOS
+FUNC_SRCS	=	ft_split.c ft_strjoin.c ft_strlcpy.c ft_strlen.c ft_strncmp.c
+FUNC_DIR	=	functions/
+FUNC 		=	$(addprefix $(FUNC_DIR), $(FUNC_SRCS))
+OBJ_F		=	$(FUNC:.c=.o)
+
+#COMMANDS
 %.o: %.c $(HEADER) Makefile
 				@${CC} ${FLAGS} -c $< -o $@
 
-$(NAME):		$(FUNCTIONS_OBJ) $(SRC_OBJ)
-				@$(CC) $(FUNCTIONS_OBJ) $(SRC_OBJ) -o $(NAME)
-				@echo "$(GREEN)$(NAME) creado!"
+$(NAME):		$(OBJ_F) $(OBJ_M)
+				@$(CC) $(OBJ_F) $(OBJ_M) -o $(NAME)
+				@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)
 
+bonus:			$(OBJ_F) $(OBJ_B)
+				@$(CC) $(OBJ_F) $(OBJ_B) -o $(NAME)
+				@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
+
 clean:
-				@$(RM) $(SRC_OBJ)
-				@$(RM) $(FUNCTIONS_OBJ)
-				@echo "$(YELLOW)archivos *.o borrados"
+				@$(RM) $(OBJ_M)
+				@$(RM) $(OBJ_F)
+				@$(RM) $(OBJ_B)
+				@echo "$(YELLOW)object files deleted!$(DEFAULT)"
 
 fclean:			clean
 				@$(RM) $(NAME)
-				@echo "$(RED)todo borrado!"
+				@echo "$(RED)all deleted!$(DEFAULT)"
 
 re:				fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean bonus re
 
-#COLORES
+#COLORS
 RED = \033[1;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
+DEFAULT = \033[0m
 
 
 

@@ -6,11 +6,11 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:43:43 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/12 20:54:17 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:51:59 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../include/pipex.h"
 
 static char	**ft_error(char **tab)
 {

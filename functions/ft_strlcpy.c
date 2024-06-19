@@ -6,12 +6,12 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:01:14 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/13 09:19:03 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:52:47 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../pipex.h"
+#include "../include/pipex.h"
 
 //copy and concatenate strings with the same input parameters and output result
 // the function return the total length of the string they tried to create

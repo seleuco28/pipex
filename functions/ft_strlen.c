@@ -6,11 +6,11 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:47:37 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/12 20:31:36 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:52:56 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../include/pipex.h"
 
 size_t	ft_strlen(const char *str)
 {

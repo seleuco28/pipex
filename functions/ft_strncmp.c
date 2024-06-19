@@ -6,11 +6,11 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:47:41 by alvelazq          #+#    #+#             */
-/*   Updated: 2023/02/12 20:35:50 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:53:04 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../include/pipex.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

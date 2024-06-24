@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:24:43 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/19 15:47:12 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:49:31 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,32 @@
 
 typedef struct s_pipex
 {
-    pid_t   pid1; //refiriendome a process id 1 // ¿?¿??¿?QUE ESTRUCTURA DE DATOS ES PID_T¿?¿?¿?
-    pid_t	pid2;
-	int		tube[2]; //esto es el tube con end[1] y end[0]
-    int		infile; // sera el stdin del cmd1
-	int		outfile; // sera el stdout del cmd2
+    //pid_t   pid1; mandatory
+    //pid_t	pid2;   mandatory
+	pid_t	pid;
+	int		tube[2]; // comprobar, pero esto en principio no haria falta, solo me servia en mandatory para el unico pipe
+    int		infile;
+	int		outfile;
 	//char	*paths; // churro largo
-	char	**cmd_paths; // churro corto
-	char	**cmd_args; // los comandos que le meto ej: "wc -c"
-	char	*cmd; // el path bien puesto ej: "which ls"
+	char	**cmd_paths;
+	char	**cmd_args;
+	char	*cmd;
+	int		cmd_nmbs; // metido del bonus
+	int		pipe_nmbs; // metido del bonus
+	int 	*pipe; //un array de dos ints (recordarlo)
+	int		idx; //cambiarle el nombre a esto
 }t_pipex;
 
 /* Tube.c */
-void	first_child(t_pipex pipex, char *argv[], char *envp[]);
-void	second_child(t_pipex pipex, char *argv[], char *envp[]);
+//void	first_child(t_pipex pipex, char *argv[], char *envp[]);
+//void	second_child(t_pipex pipex, char *argv[], char *envp[]);
+void	create_childs_bonus(t_pipex p, char **argv, char **envp);
+void	close_pipes_bonus(t_pipex *pipex);
 
 /* Free */
-void free_paths(t_pipex *pipex);
-void free_args(t_pipex *pipex);
-
+void free_paths(t_pipex *pipex); //no se si hace falta o es mandatory
+void free_args(t_pipex *pipex);  //no se si hace falta o es mandatory
+void	child_free(t_pipex *pipex);
 /* Functions */
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);

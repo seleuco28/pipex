@@ -35,4 +35,9 @@ LISTAS DE COMANDOS DE PIPES:
 - < productos.txt sort | uniq > hola.txt // ordena los productos y te da los no repetidos
 - ./pipex productos.txt "sort" "uniq" hola.txt
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CHULETA BONUS @@@@@@@@@@@@@@@@@@@@@@@@@@
+
+- < infile.txt tr a b | tr b c | tr c d > outfile.txt // te pasa las A a B y las B a C y las C a D
+- ./pipex infile.txt "tr a b" "tr b c" "tr c d" outfile.txt
+
  ################################################ COMANDO QUE PONER #############################################

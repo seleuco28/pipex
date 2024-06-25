@@ -6,45 +6,11 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 13:03:57 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:39:02 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-
-char *find_path(char **envp) // en la consola vas a env
-{
-	while(ft_strncmp("PATH", *envp, 4)) // hasta que no coincida donde pone PATH vas saltando entre terminos
-		envp++;
-	return (*envp + 5); // me retornas el churro largo quitandole el "PATH="" (de ahi el +5)
-}
-
-void	close_pipes(t_pipex *pipex)
-{
-	close(pipex->tube[0]);
-	close(pipex->tube[1]);
-}
-
-void	ft_error_msg(char *err) //dos tipos de errores, checkear bien el por qué
-{
-	perror(err);
-	exit (1);
-}
-
-void	parent_free(t_pipex *pipex)
-{
-	int	i;
-
-	i = 0;
-	close(pipex->infile);
-	close(pipex->outfile);
-	while (pipex->cmd_paths[i])
-	{
-		free(pipex->cmd_paths[i]);
-		i++;
-	}
-	free(pipex->cmd_paths);
-}
 
 // EL CONTROL DE LEAKS DE OTRAS VECES, NO ME FUNCIONA (checkear otros repos)
 /*void	leaks(void)

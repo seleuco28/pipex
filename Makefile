@@ -10,12 +10,12 @@ HEADER_SRCS	=	pipex.h pipex_bonus.h
 HEADER_DIR	=	include/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
-MPATH_SRCS	=	pipex.c free.c tube.c
+MPATH_SRCS	=	pipex.c utils.c tube.c
 MPATH_DIR	=	src/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
 
-BPATH_SRCS	=	pipex_bonus.c free_bonus.c tube_bonus.c
+BPATH_SRCS	=	pipex_bonus.c utils_bonus.c tube_bonus.c
 BPATH_DIR	=	bonus/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
 OBJ_B		=	$(BPATH:.c=.o)
@@ -45,11 +45,11 @@ clean:
 				@$(RM) $(OBJ_M)
 				@$(RM) $(OBJ_F)
 				@$(RM) $(OBJ_B)
-				@echo "$(YELLOW)object files deleted!$(DEFAULT)"
+				@echo "$(YELLOW)object files deleted!$(DEFAULT)" ##cambiarle la frase a esto
 
 fclean:			clean
 				@$(RM) $(NAME) $(NAME_BONUS)
-				@echo "$(RED)all deleted!$(DEFAULT)"
+				@echo "$(RED)all deleted!$(DEFAULT)" ##cambiarle la frase a esto
 
 re:				fclean all
 

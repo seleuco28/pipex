@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 12:27:46 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:28:59 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,40 +61,3 @@ void	create_childs_bonus(t_pipex p, char **argv, char **envp) //CUIDADO, no es p
 		execve(p.cmd, p.cmd_args, envp);
 	}
 }
-
-//esto era la parte mandatory
-/*void	first_child(t_pipex pipex, char *argv[], char *envp[])
-{
-	close(pipex.tube[0]);
-	if (dup2(pipex.infile, 0) == -1)	
-		ft_error_msg_2(ERR_DUP2);
-	if (dup2(pipex.tube[1], 1) == -1)
-		ft_error_msg_2(ERR_DUP2);
-	pipex.cmd_args = ft_split(argv[2], ' ');
-	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]);
-	if (!pipex.cmd)
-	{
-		free_args(&pipex);
-		perror("Error en el path al comando.");
-		exit(1);
-	}
-	execve(pipex.cmd, pipex.cmd_args, envp);
-}
-
-void	second_child(t_pipex pipex, char *argv[], char *envp[])
-{
-	close(pipex.tube[1]);
-	if (dup2(pipex.tube[0], 0) == -1)
-		ft_error_msg_2(ERR_DUP2);
-	if (dup2(pipex.outfile, 1) == -1)
-		ft_error_msg_2(ERR_DUP2);
-	pipex.cmd_args = ft_split(argv[3], ' ');
-	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]);
-	if (!pipex.cmd)
-	{
-		free_args(&pipex);
-		perror("Error en el path al comando.");
-		exit(1);
-	}
-	execve(pipex.cmd, pipex.cmd_args, envp);
-}*/

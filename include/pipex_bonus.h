@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:24:43 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 12:55:43 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:14:04 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
-
-/* LIBRERIAS EXTRAS */ //para las funciones nuevas pipe, execve(), fork() ..etc
-// no se pueden poner todas las librerias sys de una, hay que ir una por una
 # include <sys/wait.h>
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -33,11 +30,10 @@
 # define ERR_OUTFILE "Outfile"
 # define ERR_ARG "Invalid number of arguments"
 # define ERR_PIPE "Pipe"
-# define ERR_CMD "Command not found\n"
+# define ERR_CMD "Command not found"
 # define ERR_FORK "Failed fork"
 # define ERR_DUP2 "Failed dup2() -- function"
-# define ERR_CMD_PTH "Command path not found"
-# define ERR_MALLOC "Failed malloc"
+# define ERR_MALLOC "Failed malloc" //unico define nuevo, se usa
 
 /* Pipex structure */
 
@@ -59,15 +55,21 @@ typedef struct s_pipex
 	int		idx; //cambiarle el nombre a esto
 }t_pipex;
 
-/* Tube.c */
+/* tube_bonus.c */
 void	create_childs_bonus(t_pipex p, char **argv, char **envp);
 void	close_pipes_bonus(t_pipex *pipex);
 
-/* Free */
+/* utils_bonus.c */
 void free_paths(t_pipex *pipex); //no se si hace falta o es mandatory
 void free_args(t_pipex *pipex);  //no se si hace falta o es mandatory
 void	child_free(t_pipex *pipex);
 void	pipe_free(t_pipex *pipex);
+char *find_path(char **envp);
+void	parent_free_bonus(t_pipex *pipex);
+void create_pipes_bonus(t_pipex *pipex);
+void	close_pipes_bonus(t_pipex *pipex);
+void	ft_error_msg(char *err);
+
 /* Functions */
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);

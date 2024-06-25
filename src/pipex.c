@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/19 08:51:35 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:02:27 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	main(int argc, char *argv[], char *envp[])
 	else if (pipex.pid2 == 0)
 		second_child(pipex, argv, envp);
 	close_pipes(&pipex);
+	// estos dos waitpids son los procesos padres esperando a que terminen los hijos
 	waitpid(pipex.pid1, NULL, 0);// 1er argumento el pid, 2ndo = NULL : wait until a state change in the child process
 									// 3er arguemnto = 0 : wait any child process with the same group ID
 	waitpid(pipex.pid2, NULL, 0);

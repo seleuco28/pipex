@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/24 12:26:26 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:48:21 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	parent_free_bonus(t_pipex *pipex) //mover esta función a free_bonus.txt
 	i = 0;
 	close(pipex->infile);
 	close(pipex->outfile);
-	//if (pipex->here_doc) //ojo, aquí hay cosas del here_doc
-	//	unlink(".heredoc_tmp");
 	while (pipex->cmd_paths[i])
 	{
 		free(pipex->cmd_paths[i]);
@@ -50,7 +48,7 @@ void create_pipes_bonus(t_pipex *pipex)
 	}
 }
 
-/*void	close_pipes(t_pipex *pipex)
+/*void	close_pipes(t_pipex *pipex) //de la parte mandatory
 {
 	close(pipex->tube[0]);
 	close(pipex->tube[1]);
@@ -67,22 +65,11 @@ void	close_pipes_bonus(t_pipex *pipex)
 	}
 }
 
-int	ft_error_msg(char *err)
-{
-	write(2, err, ft_strlen(err));
-	return (1);
-}
 void	ft_error_msg_2(char *err)
 {
 	perror(err);
 	exit (1);
 }
-void	an_error()
-{
-	perror("Error cerrando el programa");
-	exit(1);
-}
-
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -98,13 +85,12 @@ int	main(int argc, char *argv[], char *envp[])
 		ft_error_msg_2(ERR_OUTFILE);
 	pipex.cmd_nmbs = argc - 3; //cuento los comandos que me entran
 	pipex.pipe_nmbs = 2 * (pipex.cmd_nmbs - 1); //4 pipes para 3 argumentos ¿?¿?¿?
-	pipex.pipe = (int *)malloc(sizeof(int) * pipex.pipe_nmbs); //malloqeamos (habrá que hacer freeze mas tarde) 
-	//controlar el error if (!pipex.pipe)
-	
-	/*if (pipe(pipex.tube) == -1) //NO HAGO EL PIPE DE MOMENTO
-		ft_error_msg_2(ERR_PIPE);*/
+	pipex.pipe = (int *)malloc(sizeof(int) * pipex.pipe_nmbs); // libero este malloc en parent_free_bonus (abajo) 
+	if (!pipex.pipe)
+		ft_error_msg_2(ERR_MALLOC);
 	pipex.cmd_paths = ft_split(find_path(envp), ':'); //lineas 54 y 55 del tutorial, en una sola
-	//controlar el error if (!pipex.cmd_paths)
+	if (!pipex.cmd_paths)
+		pipe_free(&pipex);
 	create_pipes_bonus(&pipex);
 	pipex.idx = -1; //luego cambiarlo a 0 y poner idx++ debajo del while
 	while (++(pipex.idx) < pipex.cmd_nmbs)

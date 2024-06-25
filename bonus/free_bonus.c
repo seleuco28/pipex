@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:28 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/24 10:49:36 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:38:47 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,12 @@ void	child_free(t_pipex *pipex)
 	}
 	free(pipex->cmd_args);
 	free(pipex->cmd);
+}
+
+void	pipe_free(t_pipex *pipex)
+{
+	close(pipex->infile);
+	close(pipex->outfile);
+	free(pipex->pipe);
+	ft_error_msg_2(ERR_CMD_PTH);
 }

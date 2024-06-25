@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/19 08:51:44 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:04:08 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[])
 	// la ruta que le metemos y que existe en el PC
 	// el comando que le metemos nosotros a mano ej: "ls -la"
 	// es la variable de entorno (que ponemos en la consola)
+	/* execve(2) is a system call that allows you to execute another program from 
+	within your program. It replaces the current 
+	process image with a new process image, effectively running a new program*/
 }
 
 void	second_child(t_pipex pipex, char *argv[], char *envp[])

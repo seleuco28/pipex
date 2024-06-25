@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/24 09:33:34 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:55:37 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 
 # define ERR_INFILE "Infile"
 # define ERR_OUTFILE "Outfile"
-# define ERR_INPUT "ERROR: Invalid number of arguments. \n"
+# define ERR_ARG "Invalid number of arguments"
 # define ERR_PIPE "Pipe"
-# define ERR_CMD "Command not found\n"
+# define ERR_CMD "Command not found"
 # define ERR_FORK "Failed fork"
 # define ERR_DUP2 "Failed dup2() -- function"
 
@@ -66,6 +66,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_error_msg_2(char *err);
+void	ft_error_msg(char *err);
 
 #endif

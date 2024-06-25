@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 11:24:58 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:27:46 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ void	create_childs_bonus(t_pipex p, char **argv, char **envp) //CUIDADO, no es p
 		p.cmd = get_cmd(p.cmd_paths, p.cmd_args[0]);
 		if (!p.cmd)
 		{
-			//msg_pipe(p.cmd_args[0]); //esto lo pone el tutorial
-			perror("Error en el path al comando."); //esto lo pongo yo 
-			child_free(&p);
-			exit(1);
+			child_free(&p); //en mandatory esta función es free_args()
+			ft_error_msg(ERR_CMD);
 		}
 		execve(p.cmd, p.cmd_args, envp);
 	}

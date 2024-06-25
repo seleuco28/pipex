@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:40 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 10:48:21 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:03:25 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	close_pipes_bonus(t_pipex *pipex)
 	}
 }
 
-void	ft_error_msg_2(char *err)
+void	ft_error_msg(char *err)
 {
 	perror(err);
 	exit (1);
@@ -75,19 +75,19 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	pipex;
 
-	//if (argc != 5) esto seria solo parte mandatory también
-	//	ft_error_msg_2(ERR_INPUT);
+	if (argc < 5) //acaba en x no en azul CUIDADO
+		ft_error_msg(ERR_ARG);
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
-		ft_error_msg_2(ERR_INFILE);
+		ft_error_msg(ERR_INFILE);
 	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR , 0644);
 	if (pipex.outfile < 0)
-		ft_error_msg_2(ERR_OUTFILE);
+		ft_error_msg(ERR_OUTFILE);
 	pipex.cmd_nmbs = argc - 3; //cuento los comandos que me entran
 	pipex.pipe_nmbs = 2 * (pipex.cmd_nmbs - 1); //4 pipes para 3 argumentos ¿?¿?¿?
 	pipex.pipe = (int *)malloc(sizeof(int) * pipex.pipe_nmbs); // libero este malloc en parent_free_bonus (abajo) 
 	if (!pipex.pipe)
-		ft_error_msg_2(ERR_MALLOC);
+		ft_error_msg(ERR_MALLOC);
 	pipex.cmd_paths = ft_split(find_path(envp), ':'); //lineas 54 y 55 del tutorial, en una sola
 	if (!pipex.cmd_paths)
 		pipe_free(&pipex);

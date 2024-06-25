@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/24 13:04:08 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:26:00 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,15 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[])
 	// IMPORTANTE ESTO, Y ES NUEVO add protection if dup2() < 0
 	// ************************************************************************* //
 	if (dup2(pipex.infile, 0) == -1) //queremos que nuestro infile sea nuestra stdin	
-		ft_error_msg_2(ERR_DUP2);
+		ft_error_msg(ERR_DUP2);
 	if (dup2(pipex.tube[1], 1) == -1) // y que end[1](en el tutorial) sea nuestra stdout
-		ft_error_msg_2(ERR_DUP2);
+		ft_error_msg(ERR_DUP2);
 	pipex.cmd_args = ft_split(argv[2], ' '); //spliteado cogeme el 2ndo argumento (1er comando) "en el caso de que sea wc -c haciendo el split solo queda el wc"
 	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el churro pequeño Y el 1er comando
 	if (!pipex.cmd)
 	{
 		free_args(&pipex);
-		perror("Error en el path al comando."); //controlar este error mejor también
-		exit(1);
+		ft_error_msg(ERR_CMD);
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
 	// la ruta que le metemos y que existe en el PC
@@ -74,16 +73,15 @@ void	second_child(t_pipex pipex, char *argv[], char *envp[])
 {
 	close(pipex.tube[1]); // cierro el extremo de escritura
 	if (dup2(pipex.tube[0], 0) == -1) //queremos que end[0] de nuestro programa sea el stdin para que lea lo que ha hecho el child
-		ft_error_msg_2(ERR_DUP2);
+		ft_error_msg(ERR_DUP2);
 	if (dup2(pipex.outfile, 1) == -1) // y que nuestra salida (sdout) sea por el outfile
-		ft_error_msg_2(ERR_DUP2);
+		ft_error_msg(ERR_DUP2);
 	pipex.cmd_args = ft_split(argv[3], ' '); // spliteado cogeme el 3er argumento (el 2ndo comando)
 	pipex.cmd = get_cmd(pipex.cmd_paths, pipex.cmd_args[0]); //cogemos el churro pequeño Y el 2ndo comando
 	if (!pipex.cmd)
 	{
 		free_args(&pipex);
-		perror("Error en el path al comando.");
-		exit(1);
+		ft_error_msg(ERR_CMD);
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }

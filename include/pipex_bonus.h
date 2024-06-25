@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:24:43 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 16:14:04 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:14:07 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 
-/* ERRORES */
+/* Erros defined */
 
 # define ERR_INFILE "Infile"
 # define ERR_OUTFILE "Outfile"
@@ -33,19 +33,15 @@
 # define ERR_CMD "Command not found"
 # define ERR_FORK "Failed fork"
 # define ERR_DUP2 "Failed dup2() -- function"
-# define ERR_MALLOC "Failed malloc" //unico define nuevo, se usa
+# define ERR_MALLOC "Failed malloc"
 
 /* Pipex structure */
 
 typedef struct s_pipex
 {
-    //pid_t   pid1; mandatory
-    //pid_t	pid2;   mandatory
 	pid_t	pid;
-	//int		tube[2]; // comprobar, pero esto en principio no haria falta, solo me servia en mandatory para el unico pipe
     int		infile;
 	int		outfile;
-	//char	*paths; // churro largo
 	char	**cmd_paths;
 	char	**cmd_args;
 	char	*cmd;
@@ -60,13 +56,13 @@ void	create_childs_bonus(t_pipex p, char **argv, char **envp);
 void	close_pipes_bonus(t_pipex *pipex);
 
 /* utils_bonus.c */
-void free_paths(t_pipex *pipex); //no se si hace falta o es mandatory
-void free_args(t_pipex *pipex);  //no se si hace falta o es mandatory
-void	child_free(t_pipex *pipex);
+//void	free_paths(t_pipex *pipex); //no se utiliza, es igual que parent_free_bonus
+void	free_args(t_pipex *pipex);
+//void	child_free(t_pipex *pipex); //la misma funcion que free_args de todas formas, comprobarlo
 void	pipe_free(t_pipex *pipex);
-char *find_path(char **envp);
+char	*find_path(char **envp);
 void	parent_free_bonus(t_pipex *pipex);
-void create_pipes_bonus(t_pipex *pipex);
+void	create_pipes_bonus(t_pipex *pipex);
 void	close_pipes_bonus(t_pipex *pipex);
 void	ft_error_msg(char *err);
 

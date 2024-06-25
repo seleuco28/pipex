@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 16:01:50 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:28:41 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@
 
 typedef struct s_pipex
 {
-    pid_t   pid1; //refiriendome a process id 1 // ¿?¿??¿?QUE ESTRUCTURA DE DATOS ES PID_T¿?¿?¿?
-    pid_t	pid2;
-	int		tube[2]; //ESTO SE TENDRIA QUE LIBERAR? (EN LA PARTE BONUS SE LIBERA EL PIPE...)
-    int		infile; // sera el stdin del cmd1
-	int		outfile; // sera el stdout del cmd2
+	pid_t	pid1;
+	pid_t	pid2;
+	int		tube[2];
+	int		infile;
+	int		outfile;
 	char	**cmd_paths; // churro corto
 	char	**cmd_args; // los comandos que le meto ej: "wc -c"
 	char	*cmd; // el path bien puesto ej: "which ls"
@@ -53,9 +53,9 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[]);
 void	second_child(t_pipex pipex, char *argv[], char *envp[]);
 
 /* utils.c */
-void free_paths(t_pipex *pipex);
-void free_args(t_pipex *pipex);
-char *find_path(char **envp);
+void	free_paths(t_pipex *pipex);
+void	free_args(t_pipex *pipex);
+char	*find_path(char **envp);
 void	close_pipes(t_pipex *pipex);
 void	ft_error_msg(char *err);
 void	parent_free(t_pipex *pipex);

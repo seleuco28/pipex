@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 15:28:59 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:44:44 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	create_childs_bonus(t_pipex p, char **argv, char **envp) //CUIDADO, no es p
 		p.cmd = get_cmd(p.cmd_paths, p.cmd_args[0]);
 		if (!p.cmd)
 		{
-			child_free(&p); //en mandatory esta función es free_args()
+			free_args(&p); //en mandatory esta función es free_args()
 			ft_error_msg(ERR_CMD);
 		}
 		execve(p.cmd, p.cmd_args, envp);

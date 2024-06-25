@@ -6,13 +6,13 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:28 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 15:37:39 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:15:04 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void free_paths(t_pipex *pipex)
+/*void free_paths(t_pipex *pipex) //no se usa, es igual que parent_free
 {
     int i;
 
@@ -26,7 +26,7 @@ void free_paths(t_pipex *pipex)
     }
     free(pipex->cmd_paths); //y la estructura que lo tenia guardado.
     //porque al ser puntero de puntero hay que "free a lo que hay en los cajones y los mismos cajones"
-}
+}*/
 
 void    free_args(t_pipex *pipex) // esto lo usamos cuando falla el comando
 {

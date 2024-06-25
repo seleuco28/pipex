@@ -6,13 +6,13 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:28 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 16:06:52 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:13:23 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-void free_paths(t_pipex *pipex)
+/*void free_paths(t_pipex *pipex) //no se utiliza, es igual que parent_free_bonus
 {
     int i;
 
@@ -25,7 +25,7 @@ void free_paths(t_pipex *pipex)
         i++;
     }
     free(pipex->cmd_paths);
-}
+}*/
 
 void    free_args(t_pipex *pipex)
 {
@@ -41,7 +41,7 @@ void    free_args(t_pipex *pipex)
     free(pipex->cmd);
 }
 
-void	child_free(t_pipex *pipex)
+/*void	child_free(t_pipex *pipex) //borrar, es igual que free_args
 {
 	int	i;
 
@@ -53,7 +53,7 @@ void	child_free(t_pipex *pipex)
 	}
 	free(pipex->cmd_args);
 	free(pipex->cmd);
-}
+}*/
 
 /*void	pipe_free(t_pipex *pipex) //tutorial no lo pone, y me parece un engorro
 {

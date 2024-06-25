@@ -1,5 +1,6 @@
 #SETUP
 NAME		=	pipex
+NAME_BONUS	=	pipex_bonus
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
@@ -32,11 +33,13 @@ $(NAME):		$(OBJ_F) $(OBJ_M)
 				@$(CC) $(OBJ_F) $(OBJ_M) -o $(NAME)
 				@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
+$(NAME_BONUS):	$(OBJ_F) $(OBJ_B)
+				@$(CC) $(OBJ_F) $(OBJ_B) -o $(NAME_BONUS)
+				@echo "$(GREEN)$(NAME_BONUS) created!$(DEFAULT)"
+
 all:			$(NAME)
 
-bonus:			$(OBJ_F) $(OBJ_B)
-				@$(CC) $(OBJ_F) $(OBJ_B) -o $(NAME)
-				@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
+bonus:			$(NAME_BONUS)
 
 clean:
 				@$(RM) $(OBJ_M)
@@ -45,7 +48,7 @@ clean:
 				@echo "$(YELLOW)object files deleted!$(DEFAULT)"
 
 fclean:			clean
-				@$(RM) $(NAME)
+				@$(RM) $(NAME) $(NAME_BONUS)
 				@echo "$(RED)all deleted!$(DEFAULT)"
 
 re:				fclean all

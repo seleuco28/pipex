@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:24:43 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 17:14:07 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:55:26 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@
 typedef struct s_pipex
 {
 	pid_t	pid;
-    int		infile;
+	int		infile;
 	int		outfile;
 	char	**cmd_paths;
 	char	**cmd_args;
 	char	*cmd;
-	int		cmd_nmbs; // metido del bonus
-	int		pipe_nmbs; // metido del bonus
-	int 	*pipe; //un array de dos ints (recordarlo) (el tube[2] del mandatory)
-	int		idx; //cambiarle el nombre a esto
+	int		cmd_nmbs;
+	int		pipe_nmbs;
+	int		*pipe;
+	int		idx;
 }t_pipex;
 
 /* tube_bonus.c */
@@ -56,9 +56,7 @@ void	create_childs_bonus(t_pipex p, char **argv, char **envp);
 void	close_pipes_bonus(t_pipex *pipex);
 
 /* utils_bonus.c */
-//void	free_paths(t_pipex *pipex); //no se utiliza, es igual que parent_free_bonus
 void	free_args(t_pipex *pipex);
-//void	child_free(t_pipex *pipex); //la misma funcion que free_args de todas formas, comprobarlo
 void	pipe_free(t_pipex *pipex);
 char	*find_path(char **envp);
 void	parent_free_bonus(t_pipex *pipex);

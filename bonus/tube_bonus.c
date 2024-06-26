@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 16:44:44 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:16:14 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	sub_dup2(int zero, int first)
 void	create_childs_bonus(t_pipex p, char **argv, char **envp) //CUIDADO, no es pipex es "p" solo
 {
 	p.pid = fork(); //forkeo en el parten
-	if (!p.pid) //y si retorna 0, estoy en proceso hijo y hago todo
+	if (p.pid == 0) //y si retorna 0, estoy en proceso hijo y hago todo
 	{
 		
 		if (p.idx == 0) //si estoy en el 1er fork

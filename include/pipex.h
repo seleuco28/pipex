@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:45:09 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/25 16:28:41 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:53:00 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_pipex
 	int		tube[2];
 	int		infile;
 	int		outfile;
-	char	**cmd_paths; // churro corto
-	char	**cmd_args; // los comandos que le meto ej: "wc -c"
-	char	*cmd; // el path bien puesto ej: "which ls"
+	char	**cmd_paths;
+	char	**cmd_args;
+	char	*cmd;
 }t_pipex;
 
 /* tube.c */

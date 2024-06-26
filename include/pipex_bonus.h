@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:24:43 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/26 16:55:26 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:36:02 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct s_pipex
 	char	**cmd_args;
 	char	*cmd;
 	int		cmd_nmbs;
-	int		pipe_nmbs;
+	int		pipe_exits;
 	int		*pipe;
-	int		idx;
+	int		counter;
 }t_pipex;
 
 /* tube_bonus.c */
@@ -56,7 +56,6 @@ void	create_childs_bonus(t_pipex p, char **argv, char **envp);
 void	close_pipes_bonus(t_pipex *pipex);
 
 /* utils_bonus.c */
-void	free_args(t_pipex *pipex);
 void	pipe_free(t_pipex *pipex);
 char	*find_path(char **envp);
 void	parent_free_bonus(t_pipex *pipex);

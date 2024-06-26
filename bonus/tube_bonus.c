@@ -6,7 +6,7 @@
 /*   By: alvelazq <alvelazq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:05:06 by alvelazq          #+#    #+#             */
-/*   Updated: 2024/06/26 15:16:14 by alvelazq         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:34:51 by alvelazq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,43 @@ static char	*get_cmd(char **paths, char *cmd)
 	return (NULL);
 }
 
-static void	sub_dup2(int zero, int first)
+void	free_args(t_pipex *pipex)
 {
-	dup2(zero, STDIN_FILENO); //CAMBIADO COMO LO HACE CODEVAULT
-	dup2(first, STDOUT_FILENO); // funciona
-	//dup2, 1er argumento: el fd que queremos duplicar
-	//		2ndo arg: el valor que le queremos dar  a ese fd (duplicandolo)
+	int	i;
+
+	i = 0;
+	while (pipex->cmd_args[i])
+	{
+		free(pipex->cmd_args[i]);
+		i++;
+	}
+	free(pipex->cmd_args);
+	free(pipex->cmd);
 }
 
-void	create_childs_bonus(t_pipex p, char **argv, char **envp) //CUIDADO, no es pipex es "p" solo
+static void	sub_dup2(int zero, int first)
 {
-	p.pid = fork(); //forkeo en el parten
-	if (p.pid == 0) //y si retorna 0, estoy en proceso hijo y hago todo
+	dup2(zero, STDIN_FILENO);
+	dup2(first, STDOUT_FILENO);
+}
+
+void	create_childs_bonus(t_pipex p, char **argv, char **envp)
+{
+	p.pid = fork();
+	if (p.pid == 0)
 	{
-		
-		if (p.idx == 0) //si estoy en el 1er fork
-			sub_dup2(p.infile, p.pipe[1]); //quiero infile.txt como stdin y el end[1] de stdout
-		else if (p.idx == p.cmd_nmbs - 1) //si estoy en el último
-			sub_dup2(p.pipe[2 * p.idx - 2], p.outfile); //quiero el ultimo pipe como stdin y outfile.txt como stdout
-		else //para todos los de en medio
-			sub_dup2(p.pipe[2 * p.idx - 2], p.pipe[2 * p.idx + 1]); // infile el pipe anterior outfile el pipe siguiente
-		close_pipes_bonus(&p); //si pongo el close arriba, me da fallo
-		p.cmd_args = ft_split(argv[2 + p.idx], ' ');
+		if (p.counter == 0)
+			sub_dup2(p.infile, p.pipe[1]);
+		else if (p.counter == p.cmd_nmbs - 1)
+			sub_dup2(p.pipe[2 * p.counter - 2], p.outfile);
+		else
+			sub_dup2(p.pipe[2 * p.counter - 2], p.pipe[2 * p.counter + 1]);
+		close_pipes_bonus(&p);
+		p.cmd_args = ft_split(argv[2 + p.counter], ' ');
 		p.cmd = get_cmd(p.cmd_paths, p.cmd_args[0]);
 		if (!p.cmd)
 		{
-			free_args(&p); //en mandatory esta función es free_args()
+			free_args(&p);
 			ft_error_msg(ERR_CMD);
 		}
 		execve(p.cmd, p.cmd_args, envp);
